@@ -28,20 +28,14 @@ public class Main {
      * @return Basket
      */
     public static Basket summarizeOrder(Basket currentBasket) {
-        if (currentBasket.getBasketSum() > Basket.discountPricePoint) {
-            currentBasket.setDiscount(Basket.highVolumeDiscountValue);
-        }
         return currentBasket;
     }
 
-    public static void buyLotsOfFunnyThings() {
+    public static void buyLotsOfFunnyThingsWithDiscountCode() {
 
     }
 
     public static void main(String[] args) {
-        System.out.println("elo dżambo");
-        Basket sampleBasket = getSampleBasket();
-        System.out.println("mam koszyk");
-        buyLotsOfFunnyThings();
+        buyLotsOfFunnyThingsWithDiscountCode();
     }
 }

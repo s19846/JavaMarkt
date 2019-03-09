@@ -1,18 +1,18 @@
 package shopPackage.model;
 
+import shopPackage.Main;
+import shopPackage.MockRepository;
+
 import java.util.ArrayList;
 
 public class Basket {
-    ArrayList<BasketItem> items = new ArrayList<>();
-    public static final double discountPricePoint = 300;
-    public static final int highVolumeDiscountValue = 5;
+    private ArrayList<BasketItem> items = new ArrayList<>();
+    private ArrayList<Deal> deals = new ArrayList<>();
 
     private double basketSum = 0;
-    private double finalPrice = 0;
-    private int discount = 0;
 
     public Basket addProduct(Product product) {
-        items.add(new BasketItem(product));
+        this.items.add(new BasketItem(product));
         this.basketSum += product.getPrice();
 
         return this;
@@ -23,18 +23,27 @@ public class Basket {
     }
 
     public double getFinalPrice() {
-        return this.finalPrice;
+        return this.getBasketSum() * (1 - this.getDiscount());
     }
 
-    public void setFinalPrice(double finalPrice) {
-        this.finalPrice = finalPrice;
+    public double getDiscount() {
+        double currentDiscountValue = 0;
+        for (Deal currentDeal : deals) {
+            currentDiscountValue += currentDeal.getDiscountValue();
+        }
+        return currentDiscountValue;
     }
 
-    public int getDiscount() {
-        return discount;
+    public Basket applyDiscountCode(String discountCode) {
+        if (discountCode.equals("IdzieLato")) {
+            Deal summerDeal = MockRepository.getSummerDeal();
+            this.addDeal(summerDeal);
+        }
+        return this;
     }
 
-    public void setDiscount(int discount) {
-        this.discount = discount;
+    public Basket addDeal(Deal currentDeal) {
+        deals.add(currentDeal);
+        return this;
     }
 }
