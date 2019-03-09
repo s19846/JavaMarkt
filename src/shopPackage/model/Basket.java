@@ -42,8 +42,13 @@ public class Basket {
         return this;
     }
 
-    public Basket addDeal(Deal currentDeal) {
-        deals.add(currentDeal);
+    public Basket addDeal(Deal deal) {
+        for (Deal currentDeal : deals) {
+            if (currentDeal.equals(deal)) {
+                return this;
+            }
+        }
+        deals.add(deal);
         return this;
     }
 }
