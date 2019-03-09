@@ -1,4 +1,4 @@
-package shopPackage;
+package shopPackage.model;
 
 public class Product {
     private String code;
@@ -6,7 +6,7 @@ public class Product {
     private double price;
     private double discountPrice;
 
-    Product(
+    public Product(
             String code,
             String name,
             double price,
@@ -16,5 +16,9 @@ public class Product {
         this.name = name;
         this.price = price;
         this.discountPrice = discountPrice;
+    }
+
+    public double getPrice() {
+        return price;
     }
 }
